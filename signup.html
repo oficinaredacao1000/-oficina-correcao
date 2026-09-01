@@ -1,0 +1,6 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Criar conta</title><link rel="stylesheet" href="styles.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script></head>
+<body class="auth"><div class="authbox"><a class="brand" href="index.html">OFICINA <span>DE REDAÇÃO</span><small>1000</small></a><h1>Criar acesso</h1><form id="signup"><label>Nome completo<input id="name" required></label><label>E-mail<input type="email" id="email" required></label><label>Senha<input type="password" id="password" minlength="8" required></label><button class="btn full">Criar conta</button><div id="msg" class="msg"></div></form><p class="small muted"><a href="login.html">Voltar para o login</a></p></div>
+<script>
+const {createClient}=supabase; const sb=createClient(SUPABASE_CONFIG.url,SUPABASE_CONFIG.key);
+signup.onsubmit=async e=>{e.preventDefault(); msg.textContent='Criando...'; const {error}=await sb.auth.signUp({email:email.value,password:password.value,options:{data:{full_name:name.value}}}); msg.textContent=error?error.message:'Conta criada. Verifique seu e-mail se a confirmação estiver ativada.';};
+</script></body></html>
